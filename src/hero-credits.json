@@ -1,0 +1,72 @@
+[
+ {
+  "file": "01-lascaux.jpg",
+  "title": "Lascaux painting",
+  "artist": "ศิลปินยุคหินเก่า (ไม่ทราบชื่อ)",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Lascaux_painting.jpg"
+ },
+ {
+  "file": "02-sphinx.jpg",
+  "title": "The Great Sphinx, Pyramids of Gizeh-1839) by David Roberts, RA",
+  "artist": "David Roberts",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:The_Great_Sphinx,_Pyramids_of_Gizeh-1839)_by_David_Roberts,_RA.jpg"
+ },
+ {
+  "file": "03-alexander.jpg",
+  "title": "Alexander (Battle of Issus) Mosaic",
+  "artist": "ไม่ทราบชื่อ (โมเสกจากเมืองปอมเปอี)",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Alexander_(Battle_of_Issus)_Mosaic.jpg"
+ },
+ {
+  "file": "04-athens.jpg",
+  "title": "Sanzio 01",
+  "artist": "Raphael",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg"
+ },
+ {
+  "file": "05-adam.jpg",
+  "title": "Michelangelo - Creation of Adam (cropped)",
+  "artist": "Michelangelo",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Michelangelo_-_Creation_of_Adam_(cropped).jpg"
+ },
+ {
+  "file": "06-columbus.jpg",
+  "title": "Landing of Columbus (2)",
+  "artist": "John Vanderlyn",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Landing_of_Columbus_(2).jpg"
+ },
+ {
+  "file": "07-industry.jpg",
+  "title": "Philipp Jakob Loutherbourg d. J. 002",
+  "artist": "Philip James de Loutherbourg",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Philipp_Jakob_Loutherbourg_d._J._002.jpg"
+ },
+ {
+  "file": "08-liberty.jpg",
+  "title": "Eugène Delacroix - La liberté guidant le peuple",
+  "artist": "Eugène Delacroix",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Eug%C3%A8ne_Delacroix_-_La_libert%C3%A9_guidant_le_peuple.jpg"
+ },
+ {
+  "file": "09-dday.jpg",
+  "title": "Into the Jaws of Death 23-0455M edit",
+  "artist": "Chief Photographer's Mate (CPHoM) Robert F. Sargent",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Into_the_Jaws_of_Death_23-0455M_edit.jpg"
+ },
+ {
+  "file": "10-earth.jpg",
+  "title": "The Earth seen from Apollo 17",
+  "artist": "NASA/Apollo 17 crew; taken by either Harrison Schmitt or Ron Evans",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:The_Earth_seen_from_Apollo_17.jpg"
+ }
+]
