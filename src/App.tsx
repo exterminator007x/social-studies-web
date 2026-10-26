@@ -97,9 +97,19 @@ function SubjectPage({ subject }: { subject: Subject }) {
   return (
     <main className="mx-auto max-w-5xl px-4 pb-16 sm:px-6">
       <BackLink href="#/">หน้าแรก</BackLink>
-      <p className="mt-6 font-medium text-brand">{subject.grade}</p>
-      <h1 className="mt-1 text-3xl font-semibold sm:text-4xl">{subject.title}</h1>
-      <p className="mt-3 max-w-2xl text-muted-foreground">{subject.blurb}</p>
+      <div className="sm:flex sm:items-start sm:justify-between sm:gap-8">
+        <div>
+          <p className="mt-6 font-medium text-brand">{subject.grade}</p>
+          <h1 className="mt-1 text-3xl font-semibold sm:text-4xl">{subject.title}</h1>
+          <p className="mt-3 max-w-2xl text-muted-foreground">{subject.blurb}</p>
+        </div>
+        {subject.line && (
+          <figure className="mt-6 flex items-center gap-4 rounded-2xl border bg-card p-4 shadow-sm sm:w-56 sm:shrink-0 sm:flex-col sm:text-center">
+            <img src={subject.line} alt="QR code กลุ่ม LINE ของวิชา" className="size-28 shrink-0 rounded-lg sm:size-40" />
+            <figcaption className="text-sm font-medium leading-relaxed">ให้นักเรียนทุกคนเข้ากลุ่ม Line เพื่อติดตามและส่งงาน</figcaption>
+          </figure>
+        )}
+      </div>
 
       {subject.terms.map((term) => (
         <section key={term.code} className="mt-12">

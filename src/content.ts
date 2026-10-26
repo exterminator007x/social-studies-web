@@ -18,7 +18,7 @@ export type Unit = {
   videos: Video[];
 };
 export type Term = { name: string; code: string; units: Unit[] };
-export type Subject = { id: string; title: string; grade: string; blurb: string; cover: string; terms: Term[] };
+export type Subject = { id: string; title: string; grade: string; blurb: string; cover: string; line?: string; terms: Term[] }; // line = QR code กลุ่ม LINE
 
 const hero = (f: string) => `hero/${f}.jpg`;
 
@@ -29,6 +29,7 @@ export const subjects: Subject[] = [
     grade: "ม.2",
     blurb: "ออมและลงทุนอย่างรู้เท่าทัน เข้าใจระบบเศรษฐกิจและการค้าโลก แล้วออกสำรวจทวีปยุโรปกับแอฟริกาด้วยเครื่องมือทางภูมิศาสตร์",
     cover: hero("15-containers"),
+    line: "line/m2.jpg",
     terms: [
       {
         name: "ภาคเรียนที่ 2",
