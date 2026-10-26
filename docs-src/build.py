@@ -1,22 +1,26 @@
-"""สร้างใบความรู้/ใบงาน PDF จากไฟล์ HTML ในโฟลเดอร์นี้ → public/files/m5/
+"""สร้างใบความรู้/ใบงาน PDF จากไฟล์ HTML → public/files/<วิชา>/
+ไฟล์ ม.5 อยู่ในโฟลเดอร์นี้ ไฟล์ ม.2 อยู่ใน m2/
 
-ใช้:  python3 docs-src/build.py          (สร้างทุกไฟล์)
-      python3 docs-src/build.py u4-reading  (สร้างไฟล์เดียว)
+ใช้:  python3 docs-src/build.py                (สร้างทุกไฟล์)
+      python3 docs-src/build.py u4-reading     (ไฟล์เดียวของ ม.5)
+      python3 docs-src/build.py m2/u1-reading  (ไฟล์เดียวของ ม.2)
 ต้องมี Microsoft Edge (หรือ Chrome) ในเครื่อง ใช้พิมพ์ HTML เป็น PDF
 """
 import pathlib, subprocess, sys, tempfile
 
 HERE = pathlib.Path(__file__).parent
 WEB = HERE.parent
-OUT = WEB / "public/files/m5"
 FONTS = WEB / "node_modules/@fontsource"
 BROWSERS = [
     "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
 ]
 
-COURSES = {1: "ส32102 ประวัติศาสตร์สากล 1", 2: "ส32104 ประวัติศาสตร์สากล 2"}  # หน่วย u1–u3 = ภาค 1, u4–u8 = ภาค 2
-TAIL = " · ชั้นมัธยมศึกษาปีที่ 5 · ครูอัศวิน"
+# วิชา → (โฟลเดอร์ต้นฉบับ, ชั้น, รหัสและชื่อวิชาตามเลขหน่วย)
+SUBJECTS = {
+    "m5": (HERE, 5, lambda n: "ส32102 ประวัติศาสตร์สากล 1" if n <= 3 else "ส32104 ประวัติศาสตร์สากล 2"),
+    "m2": (HERE / "m2", 2, lambda n: "ส22103 เศรษฐศาสตร์และภูมิศาสตร์"),
+}
 
 CSS = f"""
 @font-face {{ font-family: Sarabun; font-weight: 400; src: url({FONTS}/sarabun/files/sarabun-thai-400-normal.woff2), url({FONTS}/sarabun/files/sarabun-latin-400-normal.woff2); }}
@@ -38,7 +42,9 @@ p {{ margin: 4px 0 8px; }}
 ul, ol {{ margin: 4px 0 8px; padding-left: 22px; }}
 li {{ margin: 2px 0; }}
 table {{ width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 11.5pt; }}
-tr {{ break-inside: avoid; }}
+p:has(+ table), p:has(+ figure) {{ break-after: avoid; }}
+.tl, ul, ol {{ break-inside: avoid; }}
+table, tr {{ break-inside: avoid; }}  /* ตารางสั้น ย้ายไปหน้าใหม่ทั้งตาราง ไม่แยกหัวตารางกับแถวสุดท้าย */
 th, td {{ border: 1px solid var(--line); padding: 5px 8px; vertical-align: top; text-align: left; }}
 th {{ background: var(--soft); font-weight: 600; }}
 .box {{ background: var(--soft); border-radius: 8px; padding: 8px 12px; margin: 8px 0; break-inside: avoid; }}
@@ -56,6 +62,8 @@ td.blank {{ height: calc(2.1em * var(--n, 2)); }}
 figure {{ margin: 6px 0 10px; text-align: center; break-inside: avoid; }}
 figure img {{ max-height: 70mm; max-width: 100%; border-radius: 4px; }}
 figcaption {{ font-size: 9.5pt; color: #5b6475; }}
+figure svg {{ max-width: 100%; height: auto; }}
+.cols figure img {{ width: 100%; height: 48mm; object-fit: cover; }}
 .cols {{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }}
 .src {{ font-size: 9.5pt; color: #5b6475; margin-top: 14px; border-top: 1px solid var(--line); padding-top: 6px; }}
 """
@@ -63,22 +71,24 @@ figcaption {{ font-size: 9.5pt; color: #5b6475; }}
 KINDS = {"reading": "ใบความรู้", "worksheet": "ใบงาน"}
 
 
-def build(src: pathlib.Path, browser: str):
+def build(src: pathlib.Path, browser: str, sid: str):
+    _, grade, course = SUBJECTS[sid]
     unit, kind = src.stem.split("-")
     body = src.read_text(encoding="utf-8")
     title = body.split("\n", 1)[0].removeprefix("<!--").removesuffix("-->").strip()
     student = (
-        '<div class="student">ชื่อ–สกุล ...................................................... ชั้น ม.5/...... เลขที่ ......</div>'
+        '<div class="student">ชื่อ–สกุล ...................................................... ชั้น ม.{grade}/...... เลขที่ ......</div>'
         if kind == "worksheet"
         else ""
     )
     html = f"""<!doctype html><html lang="th"><meta charset="utf-8"><style>{CSS}</style>
 <div class="head"><div class="kicker">{KINDS[kind]} · หน่วยการเรียนรู้ที่ {unit[1:]}</div>
-<h1>{title}</h1><div class="course">{COURSES[1 if int(unit[1:]) <= 3 else 2]}{TAIL}</div>{student}</div>
+<h1>{title}</h1><div class="course">{course(int(unit[1:]))} · ชั้นมัธยมศึกษาปีที่ {grade} · ครูอัศวิน</div>{student}</div>
 {body}</html>"""
     with tempfile.NamedTemporaryFile("w", suffix=".html", dir=HERE, delete=False, encoding="utf-8") as f:
         f.write(html)
-    out = OUT / f"{src.stem}.pdf"
+    out = WEB / "public/files" / sid / f"{src.stem}.pdf"
+    out.parent.mkdir(exist_ok=True)
     try:
         subprocess.run(
             [browser, "--headless", "--disable-gpu", "--no-pdf-header-footer", "--allow-file-access-from-files",
@@ -95,6 +105,7 @@ if __name__ == "__main__":
     if not browser:
         sys.exit("ไม่พบ Edge/Chrome สำหรับพิมพ์ PDF")
     only = sys.argv[1:]
-    for src in sorted(HERE.glob("u*-*.html")):
-        if not only or src.stem in only:
-            build(src, browser)
+    for sid, (folder, _, _) in SUBJECTS.items():
+        for src in sorted(folder.glob("u*-*.html")):
+            if not only or src.relative_to(HERE).with_suffix("").as_posix() in only:
+                build(src, browser, sid)
