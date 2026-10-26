@@ -167,6 +167,7 @@ function UnitPage({ subject, unit, units }: { subject: Subject; unit: Unit; unit
           </ol>
         </section>
 
+        {unit.timeline && (
         <section>
           <SectionTitle>เส้นเวลา</SectionTitle>
           <ol className="relative ml-2 border-l-2 border-brand/30">
@@ -179,6 +180,7 @@ function UnitPage({ subject, unit, units }: { subject: Subject; unit: Unit; unit
             ))}
           </ol>
         </section>
+        )}
 
         {unit.facts && (
           <section>

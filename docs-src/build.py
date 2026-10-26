@@ -4,6 +4,7 @@
 ใช้:  python3 docs-src/build.py                (สร้างทุกไฟล์)
       python3 docs-src/build.py u4-reading     (ไฟล์เดียวของ ม.5)
       python3 docs-src/build.py m2/u1-reading  (ไฟล์เดียวของ ม.2)
+      python3 docs-src/build.py m2ac/u1-worksheet  (ต้านทุจริตศึกษา ม.2)
 ต้องมี Microsoft Edge (หรือ Chrome) ในเครื่อง ใช้พิมพ์ HTML เป็น PDF
 """
 import pathlib, subprocess, sys, tempfile
@@ -20,6 +21,7 @@ BROWSERS = [
 SUBJECTS = {
     "m5": (HERE, 5, lambda n: "ส32102 ประวัติศาสตร์สากล 1" if n <= 3 else "ส32104 ประวัติศาสตร์สากล 2"),
     "m2": (HERE / "m2", 2, lambda n: "ส22103 เศรษฐศาสตร์และภูมิศาสตร์"),
+    "m2ac": (HERE / "m2ac", 2, lambda n: "รายวิชาเพิ่มเติม การป้องกันการทุจริต (ต้านทุจริตศึกษา)"),
 }
 
 CSS = f"""
@@ -65,6 +67,7 @@ figcaption {{ font-size: 9.5pt; color: #5b6475; }}
 figure svg {{ max-width: 100%; height: auto; }}
 .cols figure img {{ width: 100%; height: 48mm; object-fit: cover; }}
 .cols {{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }}
+.sheet + .sheet {{ break-before: page; }}  /* ใบงานหลายคาบในไฟล์เดียว คาบละหน้า */
 .src {{ font-size: 9.5pt; color: #5b6475; margin-top: 14px; border-top: 1px solid var(--line); padding-top: 6px; }}
 """
 
@@ -77,7 +80,7 @@ def build(src: pathlib.Path, browser: str, sid: str):
     body = src.read_text(encoding="utf-8")
     title = body.split("\n", 1)[0].removeprefix("<!--").removesuffix("-->").strip()
     student = (
-        '<div class="student">ชื่อ–สกุล ...................................................... ชั้น ม.{grade}/...... เลขที่ ......</div>'
+        f'<div class="student">ชื่อ–สกุล ...................................................... ชั้น ม.{grade}/...... เลขที่ ......</div>'
         if kind == "worksheet"
         else ""
     )
