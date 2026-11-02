@@ -76,6 +76,7 @@ export const subjects: Subject[] = [
               { title: "ใบความรู้ การออมและการลงทุน", file: "files/m2/u1-reading.pdf", kind: "ใบความรู้" },
               { title: "ใบงานที่ 1 ออมก่อนใช้", file: "files/m2/u1-worksheet-1.pdf", kind: "ใบงาน" },
               { title: "สไลด์ การออมและการลงทุน", file: "files/m2/u1-slides.pdf", kind: "สไลด์" },
+              { title: "สไลด์ ลงทุนอย่างรู้ทัน", file: "files/m2/u1-slides-2.pdf", kind: "สไลด์" },
             ],
             videos: [],
           },
