@@ -7,7 +7,7 @@
       python3 docs-src/build.py m2ac/u1-worksheet  (ต้านทุจริตศึกษา ม.2)
 ต้องมี Microsoft Edge (หรือ Chrome) ในเครื่อง ใช้พิมพ์ HTML เป็น PDF
 """
-import pathlib, subprocess, sys, tempfile
+import pathlib, re, subprocess, sys, tempfile
 
 HERE = pathlib.Path(__file__).parent
 WEB = HERE.parent
@@ -88,10 +88,22 @@ th, td { padding: 2px 7px; }
 .sheet { widows: 1; orphans: 1; }
 @page { margin: 12mm 15mm; }
 .student { font-size: 11pt; line-height: 1.6; margin: 4px 0 0; }
+.bank span { white-space: nowrap; }
 .cols3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
 """
 
-KINDS = {"reading": "ใบความรู้", "worksheet": "ใบงาน"}
+# สลิป Exit Ticket: ต้นฉบับเขียนสลิปเดียว พิมพ์ซ้ำ 4 ใบต่อ A4 ไว้ตัดแจก
+EXIT = """
+@page { margin: 8mm 12mm; }
+body { font-size: 12pt; line-height: 1.5; }
+.slip { height: 70mm; padding: 3mm 0; border-bottom: 1px dashed #999; overflow: hidden; }
+.slip:last-child { border-bottom: 0; }
+.slip h2 { margin: 0 0 2px; font-size: 13pt; }
+.slip .student { margin: 0 0 2px; }
+.ln { border-bottom: 1px solid #b9b2a6; height: 2em; }
+"""
+
+KINDS = {"reading": "ใบความรู้", "worksheet": "ใบงาน", "exit": "Exit Ticket"}
 
 
 def build(src: pathlib.Path, browser: str, sid: str):
@@ -99,6 +111,8 @@ def build(src: pathlib.Path, browser: str, sid: str):
     unit, kind = src.stem.split("-")[:2]  # u1-worksheet-2.pdf = ใบงานที่แยกไฟล์
     body = src.read_text(encoding="utf-8")
     title = body.split("\n", 1)[0].removeprefix("<!--").removesuffix("-->").strip()
+    if (sid, kind) == ("m2", "worksheet"):  # วงเล็บคะแนนไม่ให้ขาดกลางบรรทัด
+        body = re.sub(r"\((\d+|ข้อละ \d+) คะแนน\)", r'(<span style="white-space:nowrap">\1 คะแนน</span>)', body)
     student = (
         f'<div class="student">ชื่อ–สกุล ........................................................................ ชั้น ม.{grade}/........ เลขที่ ........ วันที่ ......../......../........</div>'
         if kind == "worksheet"
@@ -108,6 +122,8 @@ def build(src: pathlib.Path, browser: str, sid: str):
 <div class="head"><div class="kicker">{KINDS[kind]} · หน่วยการเรียนรู้ที่ {unit[1:]}</div>
 <h1>{title}</h1><div class="course">{course(int(unit[1:]))} · ชั้นมัธยมศึกษาปีที่ {grade} · ครูอัศวิน</div>{student}</div>
 {body}</html>"""
+    if kind == "exit":
+        html = f'<!doctype html><html lang="th"><meta charset="utf-8"><style>{CSS}{EXIT}</style>{body * 4}</html>'
     img = src.with_suffix(".png")  # มีภาพใบงานที่ออกแบบแล้ว (ชื่อเดียวกัน) → ใช้ภาพเต็มหน้า A4 แทน HTML
     if img.exists():
         html = f'<!doctype html><style>@page {{ size: A4; margin: 0; }} body {{ margin: 0; }} img {{ display: block; width: 210mm; height: 297mm; }}</style><img src="{img.as_uri()}">'
