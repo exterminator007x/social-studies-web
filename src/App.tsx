@@ -238,6 +238,26 @@ function UnitPage({ subject, unit, units }: { subject: Subject; unit: Unit; unit
           </section>
         )}
 
+        {unit.games && (
+          <section>
+            <SectionTitle>เกมประกอบการเรียน</SectionTitle>
+            <ul className="space-y-3">
+              {unit.games.map((g) => (
+                <li key={g.url} className="flex flex-wrap items-center gap-4 rounded-xl border bg-card p-4">
+                  <img src={g.qr} alt={`QR code เข้าเกม ${g.title}`} className="size-32 shrink-0 rounded-lg bg-white p-2 sm:size-40" />
+                  <div className="min-w-0 flex-1 space-y-3">
+                    <p className="font-medium">{g.title}</p>
+                    <p className="text-sm text-muted-foreground">สแกน QR ด้วยมือถือ หรือกดปุ่มเพื่อเข้าเกม</p>
+                    <a href={g.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm text-primary-foreground hover:opacity-90">
+                      <ExternalLink className="size-4" /> เข้าเกม
+                    </a>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <section>
           <SectionTitle>เอกสารประกอบการเรียน</SectionTitle>
           {unit.files.length ? (

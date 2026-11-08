@@ -14,6 +14,7 @@ export type Unit = {
   facts?: string[]; // รู้หรือไม่
   myths?: { myth: string; fact: string }[];
   thinkAbout?: string[]; // ชวนคิด
+  games?: { title: string; url: string; qr: string }[]; // qr = ภาพใน public/qr/
   files: Doc[];
   videos: Video[];
 };
@@ -780,6 +781,9 @@ export const subjects: Subject[] = [
             thinkAbout: [
               "ในปี 1633 หลักฐานของกาลิเลโอยังพิสูจน์ไม่ได้เด็ดขาด ถ้าเราเป็นผู้พิพากษาในยุคนั้น เราควรตัดสินอย่างไร",
               "เบลลาร์มีนยอมรับแนวคิดนี้ในฐานะสมมติฐาน แต่ไม่ยอมให้ยืนยันเป็นข้อเท็จจริงจนกว่าจะมีหลักฐานแน่ชัด จุดยืนนี้ “โง่” หรือไม่",
+            ],
+            games: [
+              { title: "เส้นทางสู่แดนศักดิ์สิทธิ์: เสียงสะท้อนแห่งสงครามครูเสด", url: "https://exterminator007x.github.io/crusades-game/", qr: "qr/crusades-game.png" },
             ],
             files: [
               { title: "ใบความรู้ จุดเริ่มต้นสู่โลกสมัยใหม่", file: "files/m5/u4-reading.pdf", kind: "ใบความรู้" },
