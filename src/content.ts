@@ -788,6 +788,7 @@ export const subjects: Subject[] = [
             files: [
               { title: "ใบความรู้ จุดเริ่มต้นสู่โลกสมัยใหม่", file: "files/m5/u4-reading.pdf", kind: "ใบความรู้" },
               { title: "ใบงาน จุดเริ่มต้นสู่โลกสมัยใหม่", file: "files/m5/u4-worksheet.pdf", kind: "ใบงาน" },
+              { title: "สไลด์ สงครามครูเสด", file: "files/m5/u4-crusades-slides.pdf", kind: "สไลด์" },
             ],
             videos: [
               { title: "ยุคฟื้นฟูศิลปวิทยาการ สรุปใน 4 นาที (Lekker History)", youtubeId: "UzBC8sh82rY" },
