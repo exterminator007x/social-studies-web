@@ -15,6 +15,7 @@ export type Unit = {
   myths?: { myth: string; fact: string }[];
   thinkAbout?: string[]; // ชวนคิด
   games?: { title: string; url: string; qr: string }[]; // qr = ภาพใน public/qr/
+  worksheets?: { title: string; url: string; qr: string }[]; // ใบงานออนไลน์ใน public/ws/
   files: Doc[];
   videos: Video[];
 };
@@ -468,6 +469,9 @@ export const subjects: Subject[] = [
               { title: "ใบความรู้ การคิดแยกแยะผลประโยชน์ส่วนตนและส่วนรวม", file: "files/m2ac/u1-reading.pdf", kind: "ใบความรู้" },
               { title: "ใบงานที่ 1–5 (คาบที่ 1–5)", file: "files/m2ac/u1-worksheet.pdf", kind: "ใบงาน" },
               { title: "สไลด์ การคิดแยกแยะผลประโยชน์ส่วนตนและส่วนรวม", file: "files/m2ac/u1-slides.pdf", kind: "สไลด์" },
+            ],
+            worksheets: [
+              { title: "ใบงานที่ 1 ทุจริตใกล้ตัวกว่าที่คิด", url: "ws/m2ac-u1-1.html?openExternalBrowser=1", qr: "qr/m2ac-u1-1.png" },
             ],
             videos: [],
           },

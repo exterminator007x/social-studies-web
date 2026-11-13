@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f3556">
+<title>ใบงานที่ 1 ทุจริตใกล้ตัวกว่าที่คิด</title>
+<style>
+@font-face{font-family:Sarabun;font-weight:400;src:url(fonts/sarabun-thai-400-normal.woff2) format("woff2");unicode-range:U+0E01-0E5B,U+200C-200D,U+25CC}
+@font-face{font-family:Sarabun;font-weight:700;src:url(fonts/sarabun-thai-700-normal.woff2) format("woff2");unicode-range:U+0E01-0E5B,U+200C-200D,U+25CC}
+@font-face{font-family:Sarabun;font-weight:400;src:url(fonts/sarabun-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:Sarabun;font-weight:700;src:url(fonts/sarabun-latin-700-normal.woff2) format("woff2")}
+:root{--ink:#1c2433;--muted:#5d6675;--line:#e1e4ea;--bg:#f3f1ec;--card:#fff;--field:#fbfbfc;--brand:#c2582b;--brand-soft:#fbeee7;--primary:#1f3556;--on-primary:#fff;--ok:#1e8a4c;--ok-soft:#e5f4eb;--no:#c0392b;--no-soft:#fbe9e7;--shadow:0 1px 2px rgba(20,30,50,.06),0 4px 16px rgba(20,30,50,.06)}
+@media (prefers-color-scheme:dark){:root{--ink:#e8ebf1;--muted:#9aa3b2;--line:#2c3443;--bg:#0f141c;--card:#171e29;--field:#111823;--brand:#ec8a5c;--brand-soft:#3a2219;--primary:#8fb0e0;--on-primary:#0f141c;--ok:#5fcf8e;--ok-soft:#173326;--no:#f08a7e;--no-soft:#3a1c1a;--shadow:none}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:Sarabun,sans-serif;color:var(--ink);background:var(--bg);font-size:17px;line-height:1.6}
+/* หัวหน้า */
+.hero{position:relative;color:#fff;background:#1f3556 url(../hero/21-scale.jpg) center/cover;padding:calc(14px + env(safe-area-inset-top)) 16px 26px}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,22,36,.55),rgba(15,22,36,.92))}
+.hero>*{position:relative;max-width:640px;margin-left:auto;margin-right:auto}
+.back{display:inline-block;color:#fff;opacity:.85;font-size:.9rem;text-decoration:none;padding:4px 0}
+.chip{display:inline-block;margin-top:14px;background:var(--brand);color:#fff;border-radius:999px;padding:2px 12px;font-size:.82rem;font-weight:700}
+.hero h1{font-size:1.55rem;line-height:1.3;margin:8px 0 6px}
+.hero p{margin:0;opacity:.88;font-size:.95rem}
+main{max-width:640px;margin:0 auto;padding:0 16px 140px}
+/* การ์ด */
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 16px;margin-top:16px;box-shadow:var(--shadow)}
+.card:first-child{margin-top:-14px}
+.head{display:flex;align-items:center;gap:10px}
+.num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-weight:700;font-size:.95rem}
+.head h2{flex:1;font-size:1.08rem;line-height:1.35;margin:0}
+.pts{flex:none;font-size:.8rem;font-weight:700;color:var(--brand);border:1.5px solid currentColor;border-radius:999px;padding:1px 10px}
+.hint{color:var(--muted);font-size:.93rem;margin:8px 0 4px}
+label{display:block;font-size:.92rem;font-weight:700;margin-top:14px}
+label>input,label>select,label>textarea{margin-top:6px;font-weight:400}
+input[type=text],input[type=number],select,textarea{display:block;width:100%;font:inherit;font-size:16px;padding:11px 13px;border:1.5px solid var(--line);border-radius:12px;background:var(--field);color:var(--ink);transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 22%,transparent)}
+textarea{min-height:5.5em;resize:vertical}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:36px}
+.row{display:flex;gap:12px}.row>*{flex:1}
+/* ข้อในตอนที่ 1 */
+.item{border:1.5px solid var(--line);border-radius:14px;padding:12px;margin-top:12px;transition:border-color .2s,background .2s}
+.item.done{border-color:color-mix(in srgb,var(--ok) 45%,var(--line))}
+.item p{margin:0 0 10px;font-weight:700;display:flex;gap:8px}
+.item p b{flex:none;color:var(--brand)}
+.pick{display:flex;gap:8px;margin-bottom:8px}
+.pick label{flex:1;margin:0;position:relative}
+.pick input{position:absolute;opacity:0;inset:0}
+.pick span{display:block;text-align:center;padding:9px 6px;border:1.5px solid var(--line);border-radius:12px;font-weight:700;color:var(--muted);transition:all .15s}
+.pick input:checked+span.y{border-color:var(--ok);background:var(--ok-soft);color:var(--ok)}
+.pick input:checked+span.n{border-color:var(--no);background:var(--no-soft);color:var(--no)}
+.pick input:focus-visible+span{outline:3px solid var(--primary);outline-offset:2px}
+/* แถบล่าง */
+.bar{position:fixed;left:0;right:0;bottom:0;background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px 16px calc(10px + env(safe-area-inset-bottom))}
+.bar>div{max-width:640px;margin:0 auto}
+.status{display:flex;justify-content:space-between;font-size:.82rem;color:var(--muted);margin-bottom:6px}
+.status .saved{color:var(--ok);opacity:0;transition:opacity .3s}.status .saved.on{opacity:1}
+.track{height:5px;border-radius:9px;background:var(--line);overflow:hidden;margin-bottom:10px}
+.track i{display:block;height:100%;width:0;background:var(--ok);border-radius:9px;transition:width .3s}
+.btns{display:flex;gap:10px}
+button,.btn{font:inherit;font-weight:700;border:0;border-radius:999px;padding:13px 16px;cursor:pointer;text-align:center;text-decoration:none;display:block}
+.main{flex:2;background:var(--primary);color:var(--on-primary)}
+.alt{flex:1;background:transparent;color:var(--primary);border:2px solid var(--primary)}
+button:active{transform:scale(.98)}
+button:disabled{opacity:.6}
+/* หน้าดูรูป */
+#overlay{position:fixed;inset:0;background:#0b1018;display:none;flex-direction:column;align-items:center;padding:calc(16px + env(safe-area-inset-top)) 16px calc(16px + env(safe-area-inset-bottom));overflow:auto;z-index:9}
+#overlay.show{display:flex}
+#overlay .tip{color:#fff;text-align:center;margin:0 0 12px;background:#1f2a3a;border-radius:12px;padding:10px 14px;max-width:420px}
+#overlay img{max-width:100%;max-height:64vh;border-radius:8px;background:#fff;-webkit-touch-callout:default;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+#overlay .btns{margin-top:12px;width:100%;max-width:420px}
+#overlay .alt{color:#fff;border-color:#fff}
+#overlay .main{background:#fff;color:#1f3556}
+#oclose{background:transparent;color:#cfd6e2;font-weight:400;margin-top:4px}
+/* แผ่นใบงานสำหรับทำเป็นรูป (ซ่อนนอกจอ) */
+#sheet{position:fixed;left:-99999px;top:0;width:1080px;background:#fff;color:#111;padding:56px 60px;font-size:27px;line-height:1.55}
+#sheet h1{font-size:38px;margin:0 0 6px}
+#sheet .meta{display:flex;justify-content:space-between;color:#444;font-size:23px;border-bottom:3px solid #111;padding-bottom:12px;margin-bottom:6px}
+#sheet .who{font-size:28px;margin:14px 0 4px}
+#sheet h2{font-size:29px;margin:26px 0 8px;display:flex;justify-content:space-between}
+#sheet h2 span{font-weight:400;border:2px solid #111;border-radius:8px;padding:0 14px;min-width:170px;text-align:right}
+#sheet table{width:100%;border-collapse:collapse}
+#sheet th,#sheet td{border:2px solid #333;padding:8px 12px;vertical-align:top;text-align:left}
+#sheet th{background:#eef0f3}
+#sheet td.mark{text-align:center;font-size:34px;font-weight:700}
+#sheet .ans{white-space:pre-wrap;color:#0b3d91}
+#sheet .box{border:2px solid #333;padding:10px 14px;min-height:120px}
+#sheet .foot{margin-top:28px;color:#666;font-size:20px;text-align:right}
+</style>
+</head>
+<body>
+<header class="hero">
+  <a class="back" href="../#/m2ac/u1">← กลับหน้าหน่วยที่ 1</a>
+  <div><span class="chip">ต้านทุจริตศึกษา ม.2 · หน่วยที่ 1 · คาบที่ 1</span></div>
+  <h1>ใบงานที่ 1<br>ทุจริตใกล้ตัวกว่าที่คิด</h1>
+  <p>อ่านใบความรู้หน่วยที่ 1 ข้อ 1 แล้วตอบด้วยคำพูดของตนเอง ทำเสร็จกด “บันทึกเป็นรูปภาพ” แล้วส่งรูปให้ครู</p>
+</header>
+
+<main>
+  <form id="f" autocomplete="off" onsubmit="return false">
+    <section class="card">
+      <div class="head"><span class="num">👤</span><h2>ข้อมูลนักเรียน</h2></div>
+      <label>ชื่อ–สกุล<input type="text" name="name" placeholder="เช่น เด็กหญิงใจดี รักเรียน" required></label>
+      <div class="row">
+        <label>ชั้น ม.2/<input type="number" name="room" inputmode="numeric" min="1" placeholder="ห้อง" required></label>
+        <label>เลขที่<input type="number" name="no" inputmode="numeric" min="1" placeholder="เลขที่" required></label>
+      </div>
+    </section>
+
+    <section class="card" id="p1">
+      <div class="head"><span class="num">1</span><h2>ใช่หรือไม่ใช่</h2><span class="pts">5 คะแนน</span></div>
+      <p class="hint">กด ✓ ถ้าเป็นการทุจริต หรือ ✗ ถ้าไม่เป็น แล้วเขียนเหตุผลสั้น ๆ</p>
+    </section>
+
+    <section class="card">
+      <div class="head"><span class="num">2</span><h2>ผังสาเหตุและผล</h2><span class="pts">6 คะแนน</span></div>
+      <p class="hint">เลือกสถานการณ์ทุจริต 1 ข้อจากตอนที่ 1 แล้วเติมผัง</p>
+      <label>สถานการณ์ที่เลือก<select name="p2-sit"><option value="">— แตะเพื่อเลือกสถานการณ์ —</option></select></label>
+      <label>สาเหตุ (ทำไมจึงทำ)<textarea name="p2-cause"></textarea></label>
+      <label>ผลกระทบต่อส่วนรวม<textarea name="p2-effect"></textarea></label>
+    </section>
+
+    <section class="card">
+      <div class="head"><span class="num">3</span><h2>ถ้าเป็นเรา</h2><span class="pts">4 คะแนน</span></div>
+      <p class="hint">ถ้าเห็นเพื่อนทำแบบในผังข้างบน นักเรียนจะทำอย่างไร ที่ทั้งไม่ทนต่อการทุจริตและไม่ทำร้ายเพื่อน</p>
+      <textarea name="p3" style="min-height:8em;margin-top:10px" aria-label="คำตอบตอนที่ 3"></textarea>
+    </section>
+  </form>
+</main>
+
+<div class="bar"><div>
+  <div class="status"><span id="count">ตอบแล้ว 0/14 ช่อง</span><span class="saved" id="saved">✓ บันทึกคำตอบในเครื่องแล้ว</span></div>
+  <div class="track"><i id="prog"></i></div>
+  <div class="btns">
+    <button class="main" id="save">บันทึกเป็นรูปภาพ</button>
+    <button class="alt" id="share" hidden>แชร์</button>
+  </div>
+</div></div>
+
+<div id="overlay" role="dialog" aria-modal="true" aria-label="รูปใบงาน">
+  <p class="tip" id="ohint"></p>
+  <img id="oimg" alt="รูปใบงานที่ 1 พร้อมคำตอบ">
+  <div class="btns">
+    <a class="btn alt" id="odl">ดาวน์โหลด</a>
+    <button class="main" id="oshare" hidden>แชร์</button>
+  </div>
+  <button id="oclose">ปิด กลับไปแก้คำตอบ</button>
+</div>
+
+<div id="sheet"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<script>
+const SITS = [
+  "เวรทำความสะอาดแอบกลับบ้านก่อน แล้วให้เพื่อนเซ็นชื่อแทน",
+  "นักเรียนเก็บกระเป๋าเงินได้ แล้วนำไปส่งห้องธุรการ",
+  "เหรัญญิกห้องเอาเงินกองกลางไปซื้อเกมให้ตัวเอง",
+  "ส่งการบ้านที่ลอกมาจากเพื่อนทั้งหมด",
+  "ช่วยติวเพื่อนก่อนสอบโดยไม่คิดเงิน",
+];
+const KEY = "ws-m2ac-u1-1";
+const f = document.getElementById("f");
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+// สร้างข้อตอนที่ 1 และตัวเลือกตอนที่ 2
+$("p1").insertAdjacentHTML("beforeend", SITS.map((s, i) => `
+  <div class="item" id="it-${i}">
+    <p><b>${i + 1}.</b><span>${s}</span></p>
+    <div class="pick" role="radiogroup" aria-label="ข้อ ${i + 1} เป็นการทุจริตหรือไม่">
+      <label><input type="radio" name="p1-${i}" value="✓"><span class="y">✓ ทุจริต</span></label>
+      <label><input type="radio" name="p1-${i}" value="✗"><span class="n">✗ ไม่ทุจริต</span></label>
+    </div>
+    <input type="text" name="p1r-${i}" placeholder="เหตุผล" aria-label="เหตุผลข้อ ${i + 1}">
+  </div>`).join(""));
+f.elements["p2-sit"].insertAdjacentHTML("beforeend", SITS.map((s, i) => `<option value="${esc(s)}">${i + 1}. ${esc(s)}</option>`).join(""));
+
+const read = () => Object.fromEntries(new FormData(f));
+const ANSWERS = [...SITS.flatMap((_, i) => [`p1-${i}`, `p1r-${i}`]), "p2-sit", "p2-cause", "p2-effect", "p3"];
+const filled = (d, n) => String(d[n] ?? "").trim() !== "";
+
+function progress() {
+  const d = read();
+  const n = ANSWERS.filter((k) => filled(d, k)).length;
+  $("count").textContent = `ตอบแล้ว ${n}/${ANSWERS.length} ช่อง`;
+  $("prog").style.width = (n / ANSWERS.length) * 100 + "%";
+  SITS.forEach((_, i) => $("it-" + i).classList.toggle("done", filled(d, `p1-${i}`) && filled(d, `p1r-${i}`)));
+}
+
+// เก็บ/คืนคำตอบในเครื่อง
+try {
+  const saved = JSON.parse(localStorage.getItem(KEY) || "{}");
+  for (const [k, v] of Object.entries(saved)) {
+    const el = f.elements[k];
+    if (!el) continue;
+    if (el instanceof RadioNodeList) { for (const r of el) r.checked = r.value === v; }
+    else el.value = v;
+  }
+} catch {}
+progress();
+let blob = null, savedTimer;
+f.addEventListener("input", () => {
+  blob = null;
+  progress();
+  try {
+    localStorage.setItem(KEY, JSON.stringify(read()));
+    $("saved").classList.add("on"); clearTimeout(savedTimer);
+    savedTimer = setTimeout(() => $("saved").classList.remove("on"), 1500);
+  } catch {}
+});
+
+function check() {
+  for (const n of ["name", "room", "no"]) {
+    const el = f.elements[n];
+    if (!el.value.trim()) { alert("กรอกชื่อ–สกุล ชั้น และเลขที่ให้ครบก่อนนะ"); el.scrollIntoView({ block: "center" }); el.focus(); return false; }
+  }
+  const d = read();
+  const left = ANSWERS.filter((n) => !filled(d, n)).length;
+  return !left || confirm(`ยังไม่ได้ตอบ ${left} ช่อง จะบันทึกเป็นรูปเลยไหม`);
+}
+
+function fill() {
+  const d = read();
+  const when = new Date().toLocaleString("th-TH", { dateStyle: "long", timeStyle: "short" });
+  $("sheet").innerHTML = `
+    <div class="meta"><span>ต้านทุจริตศึกษา ม.2 · หน่วยที่ 1 · คาบที่ 1</span><span>ส่งเมื่อ ${esc(when)}</span></div>
+    <h1>ใบงานที่ 1 ทุจริตใกล้ตัวกว่าที่คิด</h1>
+    <div class="who"><b>ชื่อ–สกุล</b> ${esc(d.name)} &nbsp; <b>ชั้น</b> ม.2/${esc(d.room)} &nbsp; <b>เลขที่</b> ${esc(d.no)}</div>
+    <h2>ตอนที่ 1 ใช่หรือไม่ใช่ <span>/ 5</span></h2>
+    <table><tr><th style="width:52%">สถานการณ์ (สมมุติ)</th><th style="width:11%">✓ / ✗</th><th>เหตุผล</th></tr>
+      ${SITS.map((s, i) => `<tr><td>${i + 1}. ${esc(s)}</td><td class="mark ans">${esc(d[`p1-${i}`])}</td><td class="ans">${esc(d[`p1r-${i}`])}</td></tr>`).join("")}
+    </table>
+    <h2>ตอนที่ 2 ผังสาเหตุและผล <span>/ 6</span></h2>
+    <table><tr><th style="width:33%">สาเหตุ (ทำไมจึงทำ)</th><th style="width:34%">สถานการณ์ที่เลือก</th><th>ผลกระทบต่อส่วนรวม</th></tr>
+      <tr><td class="ans">${esc(d["p2-cause"])}</td><td class="ans">${esc(d["p2-sit"])}</td><td class="ans">${esc(d["p2-effect"])}</td></tr>
+    </table>
+    <h2>ตอนที่ 3 ถ้าเป็นเรา <span>/ 4</span></h2>
+    <div class="box ans">${esc(d.p3)}</div>
+    <div class="foot">รวม ........ / 15 คะแนน</div>`;
+  return `ใบงาน1_ม2-${d.room}_เลขที่${d.no}_${d.name.trim().replace(/[\s\\/:*?"<>|]+/g, "-")}.png`;
+}
+
+let fileName = "";
+async function makeImage() {
+  if (blob) return blob;
+  fileName = fill();
+  await document.fonts.ready;
+  const opt = { pixelRatio: 1, backgroundColor: "#fff", cacheBust: true, style: { position: "static", left: "0" } };
+  // ponytail: Safari มักวาดรอบแรกไม่ครบฟอนต์ จึงวาดทิ้ง 1 รอบก่อน
+  await htmlToImage.toBlob($("sheet"), opt);
+  return (blob = await htmlToImage.toBlob($("sheet"), opt));
+}
+
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const fileOf = (b) => new File([b], fileName, { type: "image/png" });
+const canShareFiles = (() => { try { return !!navigator.canShare?.({ files: [new File([""], "a.png", { type: "image/png" })] }); } catch { return false; } })();
+if (canShareFiles) { $("share").hidden = false; $("oshare").hidden = false; }
+
+let url = "";
+function showOverlay(b, downloaded) {
+  if (url) URL.revokeObjectURL(url);
+  url = URL.createObjectURL(b);
+  $("oimg").src = url;
+  $("odl").href = url;
+  $("odl").download = fileName;
+  $("ohint").textContent = isIOS
+    ? "📌 แตะค้างที่รูป แล้วเลือก “บันทึกไปยังรูปภาพ” จากนั้นส่งรูปให้ครู"
+    : downloaded ? "✅ บันทึกรูปลงเครื่องแล้ว ดูได้ในแกลเลอรีหรือโฟลเดอร์ดาวน์โหลด แล้วส่งรูปให้ครู" : "กดดาวน์โหลดหรือแชร์รูปนี้เพื่อส่งครู";
+  $("overlay").classList.add("show");
+}
+
+async function run(btn, after) {
+  if (!check()) return;
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = "กำลังสร้างรูป…";
+  try { await after(await makeImage()); }
+  catch (e) { alert("สร้างรูปไม่สำเร็จ ลองใหม่อีกครั้ง หรือเปิดลิงก์นี้ใน Chrome/Safari\n(" + e + ")"); }
+  finally { btn.disabled = false; btn.textContent = label; }
+}
+
+async function share(b) {
+  try { await navigator.share({ files: [fileOf(b)], title: "ใบงานที่ 1" }); return true; }
+  catch (e) { return e.name === "AbortError"; } // ผู้ใช้กดยกเลิกเอง ถือว่าจบ
+}
+
+$("save").onclick = () => run($("save"), (b) => {
+  if (!isIOS) { const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = fileName; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1e4); }
+  showOverlay(b, !isIOS);
+});
+// Safari อาจไม่ยอมเปิดเมนูแชร์หลังรอสร้างรูปนาน ถ้าไม่ได้ให้เปิดหน้ารูป (ซึ่งมีปุ่มแชร์อีกปุ่ม)
+$("share").onclick = () => run($("share"), async (b) => { if (!(await share(b))) showOverlay(b, false); });
+$("oshare").onclick = () => blob && share(blob);
+$("oclose").onclick = () => $("overlay").classList.remove("show");
+</script>
+</body>
+</html>
