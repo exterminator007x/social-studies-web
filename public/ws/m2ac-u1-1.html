@@ -41,6 +41,8 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
 /* ข้อในตอนที่ 1 */
 .item{border:1.5px solid var(--line);border-radius:14px;padding:12px;margin-top:12px;transition:border-color .2s,background .2s}
 .item.done{border-color:color-mix(in srgb,var(--ok) 45%,var(--line))}
+.item.need{border-color:var(--no);background:var(--no-soft)}
+.item.need input[type=text]::placeholder{color:var(--no)}
 .item p{margin:0 0 10px;font-weight:700;display:flex;gap:8px}
 .item p b{flex:none;color:var(--brand)}
 .pick{display:flex;gap:8px;margin-bottom:8px}
@@ -109,7 +111,7 @@ button:disabled{opacity:.6}
 
     <section class="card" id="p1">
       <div class="head"><span class="num">1</span><h2>ใช่หรือไม่ใช่</h2><span class="pts">5 คะแนน</span></div>
-      <p class="hint">กด ✓ ถ้าเป็นการทุจริต หรือ ✗ ถ้าไม่เป็น แล้วเขียนเหตุผลสั้น ๆ</p>
+      <p class="hint">กด ✓ ถ้าเป็นการทุจริต หรือ ✗ ถ้าไม่เป็น แล้ว<b>ต้องเขียนเหตุผลทุกข้อ</b></p>
     </section>
 
     <section class="card">
@@ -171,7 +173,7 @@ $("p1").insertAdjacentHTML("beforeend", SITS.map((s, i) => `
       <label><input type="radio" name="p1-${i}" value="✓"><span class="y">✓ ทุจริต</span></label>
       <label><input type="radio" name="p1-${i}" value="✗"><span class="n">✗ ไม่ทุจริต</span></label>
     </div>
-    <input type="text" name="p1r-${i}" placeholder="เหตุผล" aria-label="เหตุผลข้อ ${i + 1}">
+    <input type="text" name="p1r-${i}" placeholder="เหตุผล (ต้องเขียน)" aria-label="เหตุผลข้อ ${i + 1}" required>
   </div>`).join(""));
 f.elements["p2-sit"].insertAdjacentHTML("beforeend", SITS.map((s, i) => `<option value="${esc(s)}">${i + 1}. ${esc(s)}</option>`).join(""));
 
@@ -184,7 +186,10 @@ function progress() {
   const n = ANSWERS.filter((k) => filled(d, k)).length;
   $("count").textContent = `ตอบแล้ว ${n}/${ANSWERS.length} ช่อง`;
   $("prog").style.width = (n / ANSWERS.length) * 100 + "%";
-  SITS.forEach((_, i) => $("it-" + i).classList.toggle("done", filled(d, `p1-${i}`) && filled(d, `p1r-${i}`)));
+  SITS.forEach((_, i) => {
+    $("it-" + i).classList.toggle("done", filled(d, `p1-${i}`) && filled(d, `p1r-${i}`));
+    if (filled(d, `p1r-${i}`)) $("it-" + i).classList.remove("need");
+  });
 }
 
 // เก็บ/คืนคำตอบในเครื่อง
@@ -215,6 +220,14 @@ function check() {
     if (!el.value.trim()) { alert("กรอกชื่อ–สกุล ชั้น และเลขที่ให้ครบก่อนนะ"); el.scrollIntoView({ block: "center" }); el.focus(); return false; }
   }
   const d = read();
+  const noReason = SITS.map((_, i) => i).filter((i) => !filled(d, `p1r-${i}`));
+  noReason.forEach((i) => $("it-" + i).classList.add("need"));
+  if (noReason.length) {
+    alert(`ต้องเขียนเหตุผลให้ครบทุกข้อในตอนที่ 1 (ยังขาดข้อ ${noReason.map((i) => i + 1).join(", ")})`);
+    const el = f.elements[`p1r-${noReason[0]}`];
+    el.scrollIntoView({ block: "center" }); el.focus();
+    return false;
+  }
   const left = ANSWERS.filter((n) => !filled(d, n)).length;
   return !left || confirm(`ยังไม่ได้ตอบ ${left} ช่อง จะบันทึกเป็นรูปเลยไหม`);
 }
