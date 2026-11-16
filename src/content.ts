@@ -160,6 +160,7 @@ export const subjects: Subject[] = [
             files: [
               { title: "ใบความรู้ ผู้บริโภคที่รู้ทันและรู้สิทธิ", file: "files/m2/u3-reading.pdf", kind: "ใบความรู้" },
               { title: "สไลด์ ผู้บริโภคที่รู้ทันและรู้สิทธิ", file: "files/m2/u3-slides.pdf", kind: "สไลด์" },
+              { title: "ใบงาน อ่านฉลากสินค้า", file: "files/m2/u3-worksheet-3.pdf", kind: "ใบงาน" },
             ],
             videos: [],
           },

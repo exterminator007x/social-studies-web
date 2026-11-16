@@ -1,0 +1,62 @@
+<!-- ผู้บริโภคที่รู้ทันและรู้สิทธิ -->
+<style>/* ขาวดำ ชัด สำหรับถ่ายเอกสาร */
+:root { --navy: #000; --brand: #000; --soft: #fff; --line: #000; }
+body { color: #000; font-size: 12pt; }
+.course, .score, figcaption { color: #000; }
+.score { font-weight: 700; }
+th, td { border: 1px solid #000; }
+th { background: #d9d9d9; font-weight: 700; }
+table { font-size: 11.5pt; }
+.box { border: 1.5px solid #000; border-radius: 0; }
+.bank { font-weight: 700; }
+.q > b, h2 { font-weight: 800; }
+.paste { border: 2px dashed #000; min-height: 50mm; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 11pt; }
+.lines { background-image: repeating-linear-gradient(transparent 0 calc(1.85em - 1px), #555 calc(1.85em - 1px) 1.85em); }
+.tips { font-size: 9pt; line-height: 1.3; border: 1px solid #000; padding: 3px 8px; margin: 5px 0 0; }
+.tips ul { margin: 0; padding-left: 16px; }
+.tips li { margin: 0; }
+.ln { border-bottom: 1px solid #555; height: 1.9em; }
+.label-cols { display: grid; grid-template-columns: 42% 1fr; gap: 10px; align-items: stretch; }
+</style>
+<section class="sheet">
+<h2>ใบงาน อ่านฉลากสินค้า</h2>
+<div class="box" style="display:flex; gap:10px"><b style="white-space:nowrap">คำชี้แจง</b>
+<ol style="margin:0; font-size:11pt">
+  <li>ใช้ฉลากสินค้าหรือขนมที่นักเรียนเตรียมมา 1 อย่าง ติดลงในกรอบ</li>
+  <li>ใบงานนี้มี 3 ตอน คะแนนเต็ม 10 คะแนน ใช้เวลาประมาณ 20 นาที</li>
+</ol></div>
+
+<div class="q"><b>ตอนที่ 1 ฉลากบอกอะไรเราบ้าง</b><span class="score">6 คะแนน</span>
+<p>คัดลอกข้อมูลจากฉลากลงตาราง ถ้าฉลากไม่มีข้อมูลนั้น ให้เขียนว่า "ไม่มี" (ช่องละ 1 คะแนน)</p>
+<div class="label-cols">
+<div class="paste">ติดฉลากสินค้าตรงนี้<br>(ถ้าติดไม่ได้ ให้วาดแทน)</div>
+<table style="margin:0">
+  <tr><th style="width:44%">ข้อมูล</th><th>บนฉลากของฉัน</th></tr>
+  <tr><td>1) ชื่อสินค้า</td><td class="blank" style="--n:1.05"></td></tr>
+  <tr><td>2) ส่วนประกอบหลัก <span style="white-space:nowrap">3 อย่าง</span></td><td class="blank" style="--n:1.5"></td></tr>
+  <tr><td>3) <span style="white-space:nowrap">วันผลิต /</span> <span style="white-space:nowrap">วันหมดอายุ</span></td><td class="blank" style="--n:1.05"></td></tr>
+  <tr><td>4) ผู้ผลิต และจังหวัด</td><td class="blank" style="--n:1.05"></td></tr>
+  <tr><td>5) ปริมาณสุทธิ</td><td class="blank" style="--n:1.05"></td></tr>
+  <tr><td>6) สารอาหารหรือวิตามิน ที่ฉลากระบุ <span style="white-space:nowrap">(ถ้ามี)</span><br><span style="font-size:9.5pt">เขียนชื่อและปริมาณ 2 อย่าง</span></td><td class="blank" style="--n:2.1"></td></tr>
+</table>
+</div>
+<div class="tips"><b>คำแนะนำการอ่านฉลาก</b>
+<ul>
+  <li>ส่วนประกอบเรียงจากปริมาณมากไปน้อย อย่างแรกคือสิ่งที่มีมากที่สุด</li>
+  <li>สารอาหาร ดูในกรอบ "ข้อมูลโภชนาการ" ด้านหลังซอง เช่น พลังงาน โปรตีน ไขมัน น้ำตาล โซเดียม ส่วนวิตามินและแร่ธาตุ (เช่น วิตามินซี แคลเซียม) มักบอกเป็น "ร้อยละของปริมาณที่แนะนำต่อวัน"</li>
+  <li>บางซองมีฉลากหน้าซอง (GDA) บอก พลังงาน น้ำตาล ไขมัน โซเดียม ต่อ 1 ซอง ใช้ข้อมูลนี้ได้</li>
+  <li>วันหมดอายุอาจเขียนว่า "ควรบริโภคก่อน" หรือ "หมดอายุ" ถ้าไม่พบข้อมูลใด ให้เขียนว่า "ไม่มี"</li>
+</ul></div></div>
+
+<div class="q"><b>ตอนที่ 2 เครื่องหมายบนฉลาก</b><span class="score">2 คะแนน</span>
+<p>2.1 ทำเครื่องหมาย ✓ หน้าเครื่องหมายที่พบบนฉลาก (1 คะแนน)</p>
+<p class="box bank" style="font-size:10.5pt"><span>☐ เลขสารบบอาหาร (อย.)</span>&emsp;<span>☐ มอก.</span>&emsp;<span>☐ ฉลากประหยัดไฟเบอร์ 5</span>&emsp;<span>☐ อื่น ๆ ..........................</span>&emsp;<span>☐ ไม่พบเลย</span></p>
+<p>2.2 เครื่องหมายที่พบบอกอะไรผู้บริโภค ถ้าไม่พบเลย สินค้านี้ควรมีเครื่องหมายใด เพราะอะไร (1 คะแนน)</p>
+<div class="ln"></div><div class="ln"></div></div>
+
+<div class="q"><b>ตอนที่ 3 ผู้บริโภคที่รู้ทัน</b><span class="score">2 คะแนน</span>
+<p>3.1 ถ้าแพ้อาหารบางอย่าง หรืออยากเลือกของที่ดีต่อสุขภาพ ฉลากนี้ช่วยเราได้อย่างไร (1 คะแนน)</p>
+<div class="ln"></div><div class="ln"></div>
+<p>3.2 ถ้าซื้อแล้วพบว่าเสียทั้งที่ยังไม่หมดอายุ จะทำอย่างไร และร้องเรียนหน่วยงานใด (1 คะแนน)</p>
+<div class="ln"></div><div class="ln"></div></div>
+</section>
