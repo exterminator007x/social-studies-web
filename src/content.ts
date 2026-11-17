@@ -162,7 +162,10 @@ export const subjects: Subject[] = [
               { title: "สไลด์ ผู้บริโภคที่รู้ทันและรู้สิทธิ", file: "files/m2/u3-slides.pdf", kind: "สไลด์" },
               { title: "ใบงาน อ่านฉลากสินค้า", file: "files/m2/u3-worksheet-3.pdf", kind: "ใบงาน" },
             ],
-            videos: [],
+            videos: [
+              { title: "ฉลากสินค้า บอกข้อมูลอะไร ทำไมต้องอ่านก่อนซื้อ (ma-yom)", youtubeId: "3NNCg94IfOM" },
+              { title: "การอ่านฉลากโภชนาการ และสัญลักษณ์โภชนาการ (Nutrition TROPMED)", youtubeId: "NUfLkD7wAtQ" },
+            ],
           },
           {
             id: "u4",
