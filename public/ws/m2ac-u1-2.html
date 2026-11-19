@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f3556">
+<title>ใบงานที่ 2 ส่วนตน หรือ ส่วนรวม?</title>
+<link rel="stylesheet" href="ws.css">
+</head>
+<body>
+<header class="hero" style="background-image:url(../hero/21-scale.jpg)">
+  <a class="back" href="../#/m2ac/u1">← กลับหน้าหน่วยที่ 1</a>
+  <div><span class="chip">ต้านทุจริตศึกษา ม.2 · หน่วยที่ 1 · คาบที่ 2</span></div>
+  <h1>ใบงานที่ 2<br>ส่วนตน หรือ ส่วนรวม?</h1>
+  <p>ต้องทำ<b>ให้ครบทุกข้อ</b>จึงจะบันทึกเป็นรูปภาพได้ ทำเสร็จกด “บันทึกเป็นรูปภาพ” แล้วส่งรูปให้ครู</p>
+</header>
+
+<main>
+  <form id="f" autocomplete="off" onsubmit="return false">
+    <section class="card" id="p1">
+      <div class="head"><span class="num">1</span><h2>แยกให้ออก</h2><span class="pts">6 คะแนน</span></div>
+      <p class="hint">แต่ละข้อเป็นผลประโยชน์ / ของ <b>ส่วนตน</b> หรือ <b>ส่วนรวม</b></p>
+    </section>
+
+    <section class="card" id="p2">
+      <div class="head"><span class="num">2</span><h2>ฐานสอง หรือ ฐานสิบ</h2><span class="pts">6 คะแนน</span></div>
+      <details class="explain" open>
+        <summary>💡 ฐานสอง กับ ฐานสิบ คืออะไร</summary>
+        <div class="duo">
+          <div class="bin">
+            <b>ฐานสอง (Digital)</b>
+            <span class="big">0 | 1</span>
+            <small>ส่วนตน | ส่วนรวม</small>
+            <span>แยกชัดเจน ไม่เอามาปนกัน</span>
+          </div>
+          <div class="dec">
+            <b>ฐานสิบ (Analog)</b>
+            <span class="big">0 1 2 … 9</span>
+            <small>“นิดหน่อยไม่เป็นไรมั้ง”</small>
+            <span>ปนกันจนแยกไม่ออก</span>
+          </div>
+        </div>
+        <p>ฐานสองเหมือน<b>สวิตช์เปิด–ปิด</b> มีแค่ 2 ทาง ส่วนฐานสิบมี<b>ค่ากลาง ๆ</b> ที่ทำให้ข้ออ้างแทรกเข้ามาได้</p>
+        <p><b>ตัวอย่าง:</b> หัวหน้าห้องถือเงินกองกลาง 500 บาท แล้ว “ยืม” 20 บาทไปซื้อขนม คิดว่าพรุ่งนี้จะคืน</p>
+        <ul>
+          <li>คนคิดแบบ<b>ฐานสิบ</b>: “แค่ 20 บาทเอง”</li>
+          <li>คนคิดแบบ<b>ฐานสอง</b>: “เงินกองกลางไม่ใช่ของเรา จะ 1 บาทหรือ 500 บาทก็แตะไม่ได้”</li>
+        </ul>
+      </details>
+      <p class="hint">อ่านคำพูดแต่ละข้อ แล้วระบุว่าเป็นความคิดแบบ <b>ฐานสอง</b> หรือ <b>ฐานสิบ</b> พร้อมเหตุผล</p>
+    </section>
+
+    <section class="card" id="p3">
+      <div class="head"><span class="num">3</span><h2>กติกาห้องเรียนฐานสอง</h2><span class="pts">8 คะแนน</span></div>
+      <p class="hint">เขียนกติกา 4 ข้อ ที่ช่วยให้ห้องเรียนของเราแยกของส่วนตนกับของส่วนรวมได้ชัดเจน (เช่น เรื่องเงินห้อง อุปกรณ์ ห้องน้ำ ไฟฟ้า)</p>
+    </section>
+  </form>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<script>
+const THINGS = ["โทรศัพท์มือถือของเรา", "ไมโครโฟนห้องประชุม", "เงินค่าขนมของเรา", "น้ำประปาในโรงเรียน", "สนามฟุตบอลของเทศบาล", "รางวัลที่เราชนะการประกวด"];
+const LETTERS = ["ก", "ข", "ค", "ง", "จ", "ฉ"];
+const QUOTES = [
+  "“กระดาษ A4 ของห้องธุรการ หยิบไปพิมพ์งานส่วนตัวแค่ 2–3 แผ่นเอง”",
+  "“ปากกาของห้องสมุด ใช้เสร็จแล้วต้องวางคืนที่เดิม”",
+  "“ใช้รถของบริษัทไปส่งลูกที่โรงเรียนก่อน ทางผ่านพอดี”",
+];
+const pick = (name, label, opts) => `
+  <div class="pick" role="radiogroup" aria-label="${label}">
+    ${opts.map((o) => `<label><input type="radio" name="${name}" value="${o}"><span class="s">${o}</span></label>`).join("")}
+  </div>`;
+
+document.getElementById("p1").insertAdjacentHTML("beforeend", THINGS.map((t, i) => `
+  <div class="item">
+    <p><b>${LETTERS[i]}.</b><span>${t}</span></p>
+    ${pick(`p1-${i}`, `ข้อ ${LETTERS[i]}`, ["ส่วนตน", "ส่วนรวม"])}
+  </div>`).join(""));
+document.getElementById("p2").insertAdjacentHTML("beforeend", QUOTES.map((q, i) => `
+  <div class="item">
+    <p><b>${i + 1}.</b><span>${q}</span></p>
+    ${pick(`p2-${i}`, `คำพูดข้อ ${i + 1}`, ["ฐานสอง", "ฐานสิบ"])}
+    <input type="text" name="p2r-${i}" placeholder="เหตุผล" aria-label="เหตุผลข้อ ${i + 1}">
+  </div>`).join(""));
+document.getElementById("p3").insertAdjacentHTML("beforeend", [0, 1, 2, 3].map((i) => `
+  <div class="item"><label>กติกาข้อ ${i + 1}<textarea name="p3-${i}" style="min-height:3.5em" placeholder="เขียนกติกา"></textarea></label></div>`).join(""));
+
+window.WS = {
+  key: "ws-m2ac-u1-2", no: 2, cls: "ม.2", total: 20,
+  meta: "ต้านทุจริตศึกษา ม.2 · หน่วยที่ 1 · คาบที่ 2",
+  title: "ใบงานที่ 2 ส่วนตน หรือ ส่วนรวม?",
+  answers: [...THINGS.map((_, i) => `p1-${i}`), ...QUOTES.flatMap((_, i) => [`p2-${i}`, `p2r-${i}`]), ...[0, 1, 2, 3].map((i) => `p3-${i}`)],
+  // ไม่ใส่ required = ต้องทำทุกช่องจึงจะบันทึกรูปได้
+  sheet: (d, esc) => {
+    const col = (v) => THINGS.map((t, i) => (d[`p1-${i}`] === v ? `${LETTERS[i]}. ${t}` : "")).filter(Boolean).join("\n");
+    return `
+    <h2>ตอนที่ 1 แยกให้ออก <span>/ 6</span></h2>
+    <table><tr><th style="width:50%">ผลประโยชน์ / ของส่วนตน</th><th>ผลประโยชน์ / ของส่วนรวม</th></tr>
+      <tr><td class="ans">${esc(col("ส่วนตน"))}</td><td class="ans">${esc(col("ส่วนรวม"))}</td></tr>
+    </table>
+    <h2>ตอนที่ 2 ฐานสอง หรือ ฐานสิบ <span>/ 6</span></h2>
+    <table><tr><th style="width:46%">คำพูด</th><th style="width:16%">ฐาน</th><th>เหตุผล</th></tr>
+      ${QUOTES.map((q, i) => `<tr><td>${i + 1}. ${q}</td><td class="ans">${esc(d[`p2-${i}`])}</td><td class="ans">${esc(d[`p2r-${i}`])}</td></tr>`).join("")}
+    </table>
+    <h2>ตอนที่ 3 กติกาห้องเรียนฐานสอง <span>/ 8</span></h2>
+    <div class="box"><ol class="ans">${[0, 1, 2, 3].map((i) => `<li>${esc(d[`p3-${i}`])}</li>`).join("")}</ol></div>`;
+  },
+};
+</script>
+<script src="ws.js"></script>
+</body>
+</html>

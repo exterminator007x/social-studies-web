@@ -476,6 +476,7 @@ export const subjects: Subject[] = [
             ],
             worksheets: [
               { title: "ใบงานที่ 1 ทุจริตใกล้ตัวกว่าที่คิด", url: "ws/m2ac-u1-1.html?openExternalBrowser=1", qr: "qr/m2ac-u1-1.png" },
+              { title: "ใบงานที่ 2 ส่วนตน หรือ ส่วนรวม?", url: "ws/m2ac-u1-2.html?openExternalBrowser=1", qr: "qr/m2ac-u1-2.png" },
             ],
             videos: [],
           },
